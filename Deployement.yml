@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+name: price-list
+spec:
+containers:
+name: price-list
+image: price-list:latest
+ports:
+containerPort: 
+ports:
+   port: 80
+    targetPort: 80
+    nodePort: 8085
