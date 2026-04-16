@@ -1,3 +1,4 @@
+student.html
 pipeline {
   agent any
 
@@ -13,3 +14,33 @@ pipeline {
       steps {
         bat 'docker build -t student-app .'
       }
+    }
+
+stage('Run Container') {
+  steps {
+    bat 'docker run -d -p 8081:80 --name student-app student-app'
+  }
+}
+
+  }
+}
+
+
+pipeline{
+    agent any 
+    tools{
+        maven 'M3'
+    }
+    stages{
+        stage("Checkout Git"){
+            steps{
+                git branch : 'main',url : 'https://github.com/jessjames2023-oss/power.git'
+            }
+        }
+        stage('Build and Test'){
+            steps{
+                bat 'mvn clean test'
+            }
+        }
+    }
+}
