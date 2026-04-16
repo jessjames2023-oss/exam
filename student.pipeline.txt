@@ -1,0 +1,15 @@
+pipeline {
+  agent any
+
+  stages {
+
+    stage('Clone Repo') {
+      steps {
+        git branch: 'main', url: 'https://github.com/jessjames2023-oss/Sanjithpower2.git'
+      }
+    }
+
+    stage('Build Docker Image') {
+      steps {
+        bat 'docker build -t student-app .'
+      }
